@@ -1,22 +1,13 @@
 #include <iostream>
-#include <omp.h>
-#include <ctime>
-#include <bits/stdc++.h>
 #include "primeNumbers.cpp"
-#include <list>
 using namespace std;
 
-int* primeNumbers[0];
 
-void print(string str){
-    cout << str << endl;
-}
 
-int main(int argc, char **argv){
-    getPrimes(*primeNumbers, 1000);
-    cout << *primeNumbers << endl;
-    // for(int i = 0; i < 100; i++){
-        
-    // }
+int main(){
+    int* numerosPrimos = getPrimes(100);
+    for( unsigned int a = 0; a < _length; a = a + 1 ){
+        cout << numerosPrimos[a] << endl;
+    }
     return 0;
 }
