@@ -5,6 +5,14 @@
 #include <list>
 using namespace std;
 
+static int _length = 0;
+static int _Primos[]{};
+
+void appendArray(int value){
+    _Primos[_length] = value;
+    _length++;
+}
+
 bool isPrime(int n)
 {
     if (n <= 1)
@@ -17,14 +25,15 @@ bool isPrime(int n)
     return true;
 }
 
-void* getPrimes(int primesList[], int limit){
-    string e;
-    // for(int i = 0; i < limit; i++)
-    // {
-    //     // if (isPrime(i)){
+int* getPrimes(int limit){
+    _length = 0;
 
-    //     // }
-    // }
-    return 0;
+    for(int i = 0; i < limit; i++)
+    {
+        if (isPrime(i)){
+            appendArray(i);
+        }
+    }
+    cout << _length << endl;
+    return _Primos;
 }
-
