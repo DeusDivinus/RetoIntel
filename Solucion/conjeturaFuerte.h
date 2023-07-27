@@ -1,4 +1,5 @@
 #include <iostream>
+#include <omp.h>
 #include "primeNumbers.h"
 using namespace std;
  
@@ -6,20 +7,16 @@ void getResult(int number, int prime)
 {
     if(isPrime(number-prime))
     {
-        cout << number;
-        cout << "=";
-        cout << prime;
-        cout << "+";
-        cout << number-prime << endl;
+        
     }
 }
 
 void strong(int prime, int limit)
 {
-    for(int i = 0; i <= limit; i++){
-        if(prime<i && i%2==0){
-            getResult(i, prime);
-        }
+    #pragma opm parallel
+    {
+    for(int i = 2, by = 0; i < limit/2; i++, by += 2){
+    }
     }
 }
 

@@ -22,6 +22,8 @@ bool isPrime(int n)
 
 int getPrimes(int max)
 {
+    #pragma opm parallel
+    {
     static long long int _index;
     static int state = 0;
     switch (state) {
@@ -37,6 +39,7 @@ int getPrimes(int max)
         }
     }
     state = 0;
+    }
     return 0;
 }
 #endif
