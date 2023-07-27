@@ -3,7 +3,7 @@
 #include "primeNumbers.h"
 using namespace std;
  
-void getResult(int number, int prime)
+void getResult(int prime, int number)
 {
     if(isPrime(number-prime))
     {
@@ -13,10 +13,8 @@ void getResult(int number, int prime)
 
 void strong(int prime, int limit)
 {
-    #pragma opm parallel
-    {
-    for(int i = 2, by = 0; i < limit/2; i++, by += 2){
-    }
+    for(; int i = getPrimes(limit);){
+        getResult(prime, i);
     }
 }
 
