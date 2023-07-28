@@ -1,47 +1,56 @@
 #include <iostream>
 #include <fstream>
 #include <omp.h>
+#include <pthread.h>
 #include <chrono>
+#include <vector>
 #include "primeNumbers.h"
 #include "conjeturaFuerte.h"
 
 using namespace std::chrono;
 using namespace std;
 
-int iterator; // Used in main()
-int iterationMilestones = 1; // Used in main()
+class SW{
+    private:
+        high_resolution_clock::time_point start;
+        high_resolution_clock::time_point stop;
+    public:
+    void startSW(){
+        start = high_resolution_clock::now();
+    };
+    void stopSW(){
+        stop = high_resolution_clock::now();
+    };    
+    void showResult(){
+        stopSW();
+        auto duration = duration_cast<chrono::nanoseconds>(stop - start).count() * 1e-9;
+        cout << "Time taken by program is : " << fixed
+        << duration << setprecision(9);
+        cout << " sec" << endl;
+    }
+};
 
-int maxlimit = 2200000; // Limit range (0-{maxlimit})
+// ofstream MyFile("filename.txt");
+// MyFile.close();
+int maxLimit = 222222 ;
+SW newSW;
 int main(){
-    // float* numerosPrimos = getPrimes(22222222);
-    // for( unsigned int a = 0; a < _length; a = a + 1 ){
-    // }
-    auto start = high_resolution_clock::now();
-    auto startMilestone = high_resolution_clock::now();
-    ofstream myf;
-    string mystr = "e";
-    myf.open("test.txt");
-    cout << mystr << endl;
-    myf.close();
-    
-    // for(; iterator = getPrimes(maxlimit);){
-    //     if (iterationMilestones <= iterator*10)
-    //     {
-    //         cout << iterationMilestones << endl;
-    //         iterationMilestones *= 10;
-    //         auto stopMilestone = high_resolution_clock::now();
-    //         auto durationMilestone = duration_cast<chrono::nanoseconds>(stopMilestone - startMilestone).count() * 1e-9;
-    //         cout << "Time taken to milestone : " << fixed
-    //         << durationMilestone << setprecision(9);
-    //         cout << " sec" << endl;
-    //         startMilestone = high_resolution_clock::now();
-    //     }
-    // }
+    newSW.startSW();
+    ofstream MyFile("primes.txt");
+    vector<int> primes;
+    int lastPrime = 2;
+    for(; int i = getPrimes(0, maxLimit);)
+    {
+        primes.insert(primes.begin()+primes.size(), 1, i);
+        // if(lastPrime && (lastPrime + i) % 2 == 0){
+        //     cout << lastPrime+i << '='
+        //     << lastPrime << '+'
+        //     << i << endl;
+        // }
+        lastPrime = i;
+    }
 
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<chrono::nanoseconds>(stop - start).count() * 1e-9;
-    cout << "Time taken by program is : " << fixed
-         << duration << setprecision(9);
-    cout << " sec" << endl;
+    MyFile.close();
+    newSW.showResult();
     return 0;
 }
