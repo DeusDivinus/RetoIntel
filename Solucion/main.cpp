@@ -13,25 +13,17 @@ using namespace std;
 
 // ofstream MyFile("filename.txt");
 // MyFile.close();
-int maxLimit = 100000;
+int minLimit = 0;
+int maxLimit = 22222222;
 SW mainSW;
 SW xSW;
 
 int main(){
     mainSW.startSW();
     ofstream MyFile("primes.txt");
-    vector<int> primes;
-    // for(; int i = getPrimes(0, maxLimit);)
-    // {
-    //     primes.insert(primes.begin()+primes.size(), 1, i);
-    // }
-    int i;
-    for(i = 0; i <= maxLimit; i++){
-        if(isPrime(i)){
-            primes.insert(primes.begin()+primes.size(), 1, i);
-        }
-    }
-    strong(primes, 0, maxLimit);
+    vector<bool> primes;
+    primes = getPrimes(0, maxLimit);
+    strong(primes, minLimit, maxLimit);
 
     cout << "Finished search\n" << "Size:" << primes.size() << endl;
     MyFile.close();

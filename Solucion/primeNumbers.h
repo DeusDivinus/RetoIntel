@@ -4,42 +4,33 @@
 #include <bits/stdc++.h>
 #include <list>
 #include <fstream>
+#include "framework.h"
 using namespace std;
 
 #ifndef primeNumbers_H
 #define primeNumbers_H
-bool isPrime(int n)
-{
+SW pnSW;
+bool isPrime(int n) {
     if (n <= 1)
         return false;
-
-    for (int i = 2; i <= sqrt(n); i++)
-        if (n % i == 0)
+    if (n <= 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+    for (int i = 5; i * i <= n; i += 6) {
+        if (n % i == 0 || n % (i + 2) == 0)
             return false;
-
+    }
     return true;
 }
 
-int getPrimes(int max)
+vector<bool> getPrimes(int min, int max)
 {
-    #pragma opm parallel
-    {
-    static long long int _index;
-    static int state = 0;
-    switch (state) {
-    case 0:
-        state = 1;
-        for (_index = 2; _index < max; _index++) {
-            if (isPrime(_index)){
-            return _index;
-            }
-
-        case 1:
-            continue;
-        }
+    vector<bool> primesBool(max + 1, true);
+    #pragma omp parallel for schedule(dynamic)
+    for (int i = min; i <= max; i++) {
+        primesBool[i] = isPrime(i);
     }
-    state = 0;
-    }
-    return 0;
+    return primesBool;
 }
 #endif
