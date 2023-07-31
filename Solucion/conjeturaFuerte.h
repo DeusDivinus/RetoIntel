@@ -31,6 +31,10 @@ void strong(const vector<char>& primes, int min, int max) {
             continue;
         }
         for (unsigned int v = 0; v <= max; ++v){
+            if(v%2 == 0)
+            {
+                continue;
+            }
             result = i-v;
             if(primes[v] & primes[result])
             {

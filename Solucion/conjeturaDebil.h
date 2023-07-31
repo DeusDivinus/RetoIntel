@@ -32,12 +32,14 @@ void weak(const vector<char> &primes, int min, int max)
     for (unsigned int i = 0; i <= max; ++i)
     {
         result = i * 3;
-        resultY = i * 2;
+        resultY = (i * 2)+(i+2);
         if (primes[i] & (result % 2 != 0) & result < max)
         {
-            resultY = resultY+(i+2);
             unpairs[result] = 1;
-            unpairs[resultY] = 1;
+            if(primes[i+2])
+            {
+                unpairs[resultY] = 1;
+            }
         }
         if (i < 5 | i % 2 == 0 | unpairs[i])
         {
@@ -50,9 +52,12 @@ void weak(const vector<char> &primes, int min, int max)
             {
                 break;
             }
-            if (!primes[v] | i % 2 == 0)
+            if (!primes[v] | v % 2 == 0)
             {
-                continue;
+                if (i > 7)
+                {
+                    continue;
+                }
             }
 
             for (unsigned int z = 0; z <= max; ++z)
@@ -62,7 +67,7 @@ void weak(const vector<char> &primes, int min, int max)
                 {
                     break;
                 }
-                if (!primes[z] | !primes[resultZ])
+                if (!primes[z] | !primes[resultZ] | z % 2 == 0)
                 {
                     continue;
                 }

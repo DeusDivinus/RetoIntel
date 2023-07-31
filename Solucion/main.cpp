@@ -15,8 +15,8 @@ using namespace std;
 // ofstream MyFile("filename.txt");
 // MyFile.close();
 int minLimit = 0;
-int maxLimit = 22000000;
-int strongLimit = 22000000;
+int maxLimit = 22222222;
+int strongLimit = 22222222;
 int weakLimit = 111111;
 
 SW mainSW;
