@@ -4,21 +4,6 @@
 #include "primeNumbers.h"
 using namespace std;
 
-bool getStrongNumber(int number, const vector<bool> primes)
-{
-    if(number%2!=0){
-        return false;
-    }
-    int sqrtNumber = static_cast<int>(sqrt(number));
-    for (int i = 2; i <= sqrtNumber; i++) {
-        if (primes[i] && primes[number - i]) {
-            cout << number << endl;
-            return true;
-        }
-    }
-    return false;
-}
-
 void checkPairsLeft(const vector<char>& pairs, unsigned int max) {
     cout << "Pairs left to get: ";
     unsigned int left = 0;

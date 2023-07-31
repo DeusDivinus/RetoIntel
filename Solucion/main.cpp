@@ -23,8 +23,13 @@ int main(){
     vector<char> primes;
     mainSW.startSW(); primes = getPrimes(0, maxLimit)   ; mainSW.showResult();
     cout << "Finished search\n" << "Size:" << primes.size() << endl;
-    mainSW.startSW(); strong(primes, minLimit, maxLimit); mainSW.showResult();
-
+    #pragma omp parallel
+    {
+        #pragma omp single
+        {
+            mainSW.startSW(); strong(primes, minLimit, maxLimit); mainSW.showResult();
+        }
+    }
     MyFile.close();
     return 0;
 }

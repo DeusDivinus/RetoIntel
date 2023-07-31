@@ -4,7 +4,6 @@
 using namespace std::chrono;
 using namespace std;
 
-
 #ifndef framework_H
 #define framework_H
 class SW{

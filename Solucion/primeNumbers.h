@@ -29,7 +29,7 @@ vector<char> getPrimes(int min, int max)
     vector<char> primesBool(max + 1, 0);
     primesBool[2] = 1;
     #pragma omp parallel for schedule(dynamic)
-    for (int i = min; i <= max; i++) {
+    for (unsigned int i = min; i <= max; i++) {
         if(i%2 != 0)
         {
             primesBool[i] = isPrime(i);
