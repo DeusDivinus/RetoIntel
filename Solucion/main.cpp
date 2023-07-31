@@ -14,19 +14,17 @@ using namespace std;
 // ofstream MyFile("filename.txt");
 // MyFile.close();
 int minLimit = 0;
-int maxLimit = 22222222;
+int maxLimit = 22000000;
 SW mainSW;
 SW xSW;
 
 int main(){
-    mainSW.startSW();
     ofstream MyFile("primes.txt");
-    vector<bool> primes;
-    primes = getPrimes(0, maxLimit);
-    strong(primes, minLimit, maxLimit);
-
+    vector<char> primes;
+    mainSW.startSW(); primes = getPrimes(0, maxLimit)   ; mainSW.showResult();
     cout << "Finished search\n" << "Size:" << primes.size() << endl;
+    mainSW.startSW(); strong(primes, minLimit, maxLimit); mainSW.showResult();
+
     MyFile.close();
-    mainSW.showResult();
     return 0;
 }
