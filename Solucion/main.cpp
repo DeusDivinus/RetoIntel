@@ -6,6 +6,7 @@
 #include <chrono>
 #include <vector>
 #include "primeNumbers.h"
+#include "conjeturaDebil.h"
 #include "conjeturaFuerte.h"
 #include "framework.h"
 using namespace std::chrono;
@@ -15,6 +16,9 @@ using namespace std;
 // MyFile.close();
 int minLimit = 0;
 int maxLimit = 22000000;
+int strongLimit = 22000000;
+int weakLimit = 111111;
+
 SW mainSW;
 SW xSW;
 
@@ -27,8 +31,15 @@ int main(){
     {
         #pragma omp single
         {
-            mainSW.startSW(); strong(primes, minLimit, maxLimit); mainSW.showResult();
+            mainSW.startSW(); strong(primes, minLimit, strongLimit); mainSW.showResult();
         }
+    }
+    #pragma omp parallel
+    {
+        #pragma omp single
+            {
+                mainSW.startSW(); weak(primes, minLimit, weakLimit); mainSW.showResult();
+            }
     }
     MyFile.close();
     return 0;

@@ -1,9 +1,10 @@
 #include <iostream>
 #include <omp.h>
-#include <list>
 #include "primeNumbers.h"
 using namespace std;
 
+#ifndef conjeturaFuerte_H
+#define conjeturaFuerte_H
 void checkPairsLeft(const vector<char>& pairs, unsigned int max) {
     cout << "Pairs left to get: ";
     unsigned int left = 0;
@@ -40,3 +41,4 @@ void strong(const vector<char>& primes, int min, int max) {
     }
     checkPairsLeft(pairs, max);
 }
+#endif
