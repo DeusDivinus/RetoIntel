@@ -1,10 +1,10 @@
-#include <iostream>
-#include <omp.h>
-#include "primeNumbers.h"
-using namespace std;
-
 #ifndef conjeturaDebil_H
 #define conjeturaDebil_H
+
+#include <iostream>
+#include <omp.h>
+using namespace std;
+
 void checkLeft(const vector<char> &unpairs, unsigned int max)
 {
     cout << "Unpairs left to get: ";

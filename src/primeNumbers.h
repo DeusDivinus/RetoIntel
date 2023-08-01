@@ -1,29 +1,30 @@
-#include <iostream>
-#include <omp.h>
-#include <ctime>
-#include <bits/stdc++.h>
-#include <list>
-#include <fstream>
-#include "framework.h"
-using namespace std;
-
 #ifndef primeNumbers_H
 #define primeNumbers_H
-SW pnSW;
+
+#include <iostream>
+#include <omp.h>
+using namespace std;
+
+// ! Modified from https://www.geeksforgeeks.org/sum-of-all-the-prime-divisors-of-a-number/
+// ?    | n: Any integer
+// Returns true, false = prime, not prime
 char isPrime(int n) {
     if (n <= 1)
         return 0;
     if (n <= 3)
         return 1;
     if (n % 2 == 0 || n % 3 == 0)
-        return false;
+        return 0;
     for (int i = 5; i * i <= n; i += 6) {
         if (n % i == 0 || n % (i + 2) == 0)
-            return false;
+            return 0;
     }
     return 1;
 }
 
+// * getPrimes: returns a list between min, max, which each prime index is 1
+// ?    | min: Any integer, must be below max
+// ?    | max: Any integer, must be above min
 vector<char> getPrimes(int min, int max)
 {
     vector<char> primesBool(max + 1, 0);
