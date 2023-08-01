@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <omp.h>
+
 using namespace std;
 
 // ! Modified from https://www.geeksforgeeks.org/sum-of-all-the-prime-divisors-of-a-number/

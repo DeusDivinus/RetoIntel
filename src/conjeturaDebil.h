@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <omp.h>
+
 using namespace std;
 
 void checkLeft(const vector<char> &unpairs, unsigned int max)

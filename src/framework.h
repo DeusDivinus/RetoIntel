@@ -12,7 +12,7 @@ using namespace std::chrono;
 using namespace std;
 
 // * SW = Stopwatch
-// ? | startSW()     : Starts counting
+// ? | startSW()     : Begins Counting
 // ? | showResult()  : Stops SW & Shows Result
 class SW{
     private:
