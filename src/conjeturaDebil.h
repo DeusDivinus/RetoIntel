@@ -6,21 +6,6 @@
 
 using namespace std;
 
-void checkLeft(const vector<char> &unpairs, unsigned int max)
-{
-    cout << "Unpairs left to get: ";
-    unsigned int left = 0;
-    for (unsigned int i = 1; i <= max; i += 2)
-    {
-        if (unpairs[i] == 0)
-        {
-            cout << i << endl;
-            ++left;
-        }
-    }
-    cout << left << endl;
-}
-
 void weak(const vector<char> &primes, int min, int max)
 {
     vector<char> unpairs(max + 1, 0);
@@ -30,6 +15,8 @@ void weak(const vector<char> &primes, int min, int max)
     unpairs[5] = 1;
     unpairs[3] = 1;
     unpairs[1] = 1;
+
+    ofstream MyFile("primeUnpairs.txt", fstream::app);
     for (unsigned int i = 0; i <= max; ++i)
     {
         result = i * 3;
@@ -72,11 +59,12 @@ void weak(const vector<char> &primes, int min, int max)
                 {
                     continue;
                 }
+                MyFile << i << "=" << v << "+" << resultZ << "+" << z << "\n";
                 unpairs[resultZ+v+z] = 1;
                 break;
             }
         }
     }
-    checkLeft(unpairs, max);
+    MyFile.close();
 }
 #endif
